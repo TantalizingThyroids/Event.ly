@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Event.ly Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TantalizingThyroids/Event.ly.git"
+  },
+  "author": "Linda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TantalizingThyroids/Event.ly/issues"
+  },
+  "homepage": "https://github.com/TantalizingThyroids/Event.ly#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.3.1",
+    "body-parser": "^1.15.0",
+    "bookshelf": "^0.9.2",
+    "express": "^4.13.4",
+    "express-partials": "^0.3.0",
+    "express-sessions": "^1.0.5",
+    "knex": "^0.10.0",
+    "nodemon": "^1.8.1",
+    "underscore": "^1.8.3"
+  }
+}
