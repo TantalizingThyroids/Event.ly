@@ -1,12 +1,12 @@
 var sqlite3 = require('sqlite3').verbose();
 var fs = require('fs');
 
-var db = new sqlite3.Database('db'); //which folder to initialize from?
+var db = new sqlite3.Database('./database.db'); //which folder to initialize from?
 
-var insertValues = function(eventID, eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback){
+var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback){
 
-  var statement = db.prepare('INSERT INTO `eventTable`(`eventID`,`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longiude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`)'+ 'VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-  statement.run(eventID, eventOwner, title, date, time, streeAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback)
+  var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`)'+ 'VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback)
 }
 
 var createTable = function(callback){
@@ -14,8 +14,8 @@ var createTable = function(callback){
     '`eventID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,' +
     '`eventOwner` TEXT,' +
     '`title` TEXT,' +
-    '`date` DATE,' +
-    '`time` TIME,' +
+    '`date` TEXT,' +
+    '`time` TEXT,' +
     '`streetAddress` TEXT,' +
     '`city` TEXT,' +
     '`state` TEXT,' +
@@ -25,8 +25,7 @@ var createTable = function(callback){
     '`indoorOutdoor` INTEGER,' +
     '`estimatedWeather` INTEGER,' +
     '`weatherStatus` INTEGER,' +
-    '`publicPrivate` INTEGER'
-    ')', callback);
+    '`publicPrivate` INTEGER)', callback);
 }
 
 var getAll = function(){
@@ -35,7 +34,7 @@ var getAll = function(){
 
 createTable(function (err){
   if(err){
-    console.error(err);
+    console.log("ERR!! ", err);
   } else{
     insertValues('Dan', 'Cricket Party', '2016-02-13', '10:00:00', '123 Main St.', 'SomeCity','CA', 12345, 123.445, 555.567, 1, 0, 1, function(err){
         if(err){
