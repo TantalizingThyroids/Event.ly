@@ -3,14 +3,26 @@
   <div class='newEvent'>
     <form>
       <h2>Event Details</h2>
-      <ul>
-        <li><p>Label: <input ng-model='addLabel' placeholder="Enter Label"></input></p></li>
-        <li><p>Time: <input ng-model='addTime' placeholder="HH:MM"></input></p></li>
-        <li><p>Date: <input ng-model='addDate' placeholder="YYYY-MM-DD"></input></p></li>
-        <li><p>Zip Code: <input ng-model='addZip' placeholder="Event Zip Code"></input></p></li>
-        <li><p>Outside?: <input type:'checkbox' ng-model='outside'></p></li>
-      </ul>
+      <div class="form-group">
+        <label>Label:</label>
+        <input ng-model='addLabel' placeholder="Enter Label"></input>
+      </div>
+      <div class="form-group">
+        <label>Time:</label>
+        <input ng-model='addTime' placeholder="HH:MM"></input>
+      </div>
+      <div class="form-group">
+        <label>Date:</label>
+        <input ng-model='addDate' placeholder="YYYY-MM-DD"></input>
+      </div>
+      <div class="form-group">
+        <label>Zip Code:</label>
+        <input ng-model='addZip' placeholder="Event Zip Code"></input>
+      </div>
+        <div class="checkbox">
+          <label> <input type="checkbox" value="" ng-model='outside'> Outside?</label>
+        </div>
     </form>
-    <button ng-click="addEvent();">Submit</button>
+    <button ng-click="addEvent();" class='btn btn-default'>Submit</button>
   </div>
 </div>

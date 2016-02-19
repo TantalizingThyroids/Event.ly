@@ -1,2 +1,18 @@
-var app = angular.module('evently',['ngroute']);
+var app = angular.module('Evently',[
+  'ngRoute',
+  'Evently.List',
+  'Evently.Add',
+  'Evently.Services'
+  ]);
 
+app.config(function($routeProvider) {
+  $routeProvider
+  .when('/newEvent',{
+    templateUrl:'newEvent.html',
+    controller:'EntryController'
+  })
+  .when('/listEvents',{
+    templateUrl:'listEvents.html',
+    controller:'EventListController'
+  });
+});
