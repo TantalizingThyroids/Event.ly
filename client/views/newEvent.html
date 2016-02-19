@@ -1,0 +1,16 @@
+<div id='newEvent' ng-controller="EntryController">
+  <h1>Enter New Event</h1>
+  <div class='newEvent'>
+    <form>
+      <h2>Event Details</h2>
+      <ul>
+        <li><p>Label: <input ng-model='addLabel' placeholder="Enter Label"></input></p></li>
+        <li><p>Time: <input ng-model='addTime' placeholder="HH:MM"></input></p></li>
+        <li><p>Date: <input ng-model='addDate' placeholder="YYYY-MM-DD"></input></p></li>
+        <li><p>Zip Code: <input ng-model='addZip' placeholder="Event Zip Code"></input></p></li>
+        <li><p>Outside?: <input type:'checkbox' ng-model='outside'></p></li>
+      </ul>
+    </form>
+    <button ng-click="addEvent();">Submit</button>
+  </div>
+</div>
