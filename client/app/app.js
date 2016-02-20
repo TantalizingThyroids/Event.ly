@@ -7,6 +7,9 @@ var app = angular.module('Evently',[
 
 app.config(function($routeProvider) {
   $routeProvider
+  .when('/',{
+    templateUrl:'index.html'
+  })
   .when('/newEvent',{
     templateUrl:'newEvent.html',
     controller:'EntryController'
@@ -14,5 +17,8 @@ app.config(function($routeProvider) {
   .when('/listEvents',{
     templateUrl:'listEvents.html',
     controller:'EventListController'
+  })
+  .otherwise({
+    redirectTo: '/'
   });
 });

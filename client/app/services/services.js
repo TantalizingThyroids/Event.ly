@@ -5,7 +5,7 @@ angular.module('Evently.Services', [])
   var getAll = function(){
     return $http({
       method: 'GET',
-      url: '/alarms/',
+      url: '/event/',
     })
     .then(function(res){
       return res.data;
@@ -15,7 +15,7 @@ angular.module('Evently.Services', [])
   var getOne = function(id){
     return $http({
       method: 'GET',
-      url: '/alarms/'
+      url: '/event/'
     })
     .then(function(res){
       console.log('Get One res:', res);
@@ -23,15 +23,15 @@ angular.module('Evently.Services', [])
     });
   };
 
-  var newEvent = function(alarm){
-    console.log('NewAlarm : ', alarm);
+  var newEvent = function(event){
+    console.log('NewEvent : ', event);
     return $http({
       method: 'POST',
-      url: '/alarms/',
-      data: alarm
+      url: '/event/',
+      data: event
     })
     .then(function(res){
-      console.log('New Alarm res:', res);
+      console.log('New Event res:', res);
       
     });
   };
@@ -54,8 +54,8 @@ angular.module('Evently.Services', [])
   return {
     getAll:getAll,
     getOne:getOne,
-    newAlarm:newEvent,
-    wx:wx
+    newEvent:newEvent,
+    // wx:wx
   };
 
 });

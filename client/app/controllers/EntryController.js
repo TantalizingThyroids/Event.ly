@@ -9,6 +9,23 @@ angular.module('Evently.Add',[])
         inOut:$scope.outside
       };
     Events.addEntry(newEvent);
+    $scope.setPristine(true);
   };
 
   }]);
+
+  
+// Event Owner
+// Title
+// Date
+// Time
+// Street address
+// City
+// State
+// Zip code
+// Latitude
+// Longitude
+// Indoor/Outdoor
+// Estimated weather 
+// Weather status
+// Public/Private
