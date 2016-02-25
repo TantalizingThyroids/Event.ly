@@ -55,7 +55,7 @@ module.exports.getAll = function(callback){
 
 module.exports.getByOwner = function(eventOwner, callback){
   var lookUp = db.prepare('SELECT * from eventTable where eventOwner = ?')
-  lookUp.run(eventOwner, callback);
+  lookUp.all(eventOwner, callback);
 }
 
 module.exports.deleteEvent = function(eventID, callback){
