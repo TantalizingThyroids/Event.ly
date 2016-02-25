@@ -1,4 +1,4 @@
-var db = require('../db/db.js');
+var db = require('../db/db.js').database();
 
 /*Helper Functions*/
 var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback){
@@ -67,14 +67,8 @@ module.exports.deleteEvent = function(eventID, callback){
 //-------------------------------------------------------------------------------------------//
 
 /*Test for inserting in eventTable*/
-// createTable(function (err){
-//   if(err){
-//     console.log("ERR!! ", err);
-//   } else{
-//     insertValues('Dan', 'Cricket Party', '2016-02-13', '10:00:00', '123 Main St.', 'SomeCity','CA', 12345, 123.445, 555.567, 1, 'rain', 0, 1, function(err){
-//         if(err){
-//           console.log('Error inserting values', err);
-//         }
-//     });
-//   }
-// })
+createTable(function (err){
+  if(err){
+    console.log("ERR!! ", err);
+  }
+});
