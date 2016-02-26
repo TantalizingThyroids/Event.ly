@@ -19,11 +19,11 @@ angular.module('Evently.Services', [])
     })
     .then(function(res){
       console.log('Get One res:', res);
-      
+      return res.data;
     });
   };
 
-  var newEvent = function(event){
+  var addEntry = function(event){
     console.log('NewEvent : ', event);
     return $http({
       method: 'POST',
@@ -34,6 +34,17 @@ angular.module('Evently.Services', [])
       console.log('New Event res:', res);
       
     });
+  };
+
+  var deleteEvent = function(id){
+    console.log('DeleteEvent: ', id);
+    return $http({
+      method: 'DELETE',
+      url: '/event/'+ id,
+    })
+      .then(function(res){
+        return res.data;
+      });
   };
 
   // // Weather Info pull
@@ -55,6 +66,7 @@ angular.module('Evently.Services', [])
     getAll:getAll,
     getOne:getOne,
     newEvent:newEvent,
+    deleteEvent:deleteEvent
     // wx:wx
   };
 

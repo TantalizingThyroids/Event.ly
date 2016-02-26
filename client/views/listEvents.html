@@ -2,30 +2,28 @@
   <h2>Current Events</h2>
   <div class='events' ng-repeat="event in data.events | orderBy: reverse">
     <!-- Custom Directive Angular -->
-    <eventInfo info='event'>
+    <div info='event'>
       <h2 class='title'>Title:  {{ event.label }}</h2>
+      <p class='eventId'>Event ID:  {{ event.id }}</p>
       <p class='eventOwner'>Event Owner: {{ event.owner }}</p>
-      <p class=''></p>
       <p class='time'>Time:  {{ event.time }}</p>
       <p class='date'>Date:  {{ event.date }}</p>
-      <p class='zip'>Zip Code:  {{event.zip }}</p>
+      <p class='street'>Street Address:  {{ event.street }}</p>
+      <p class='city'>City: {{ event.city }}</p>
+      <p class='state'>State: {{ event.state }}</p>
+      <p class='zip'>Zip Code:  {{ event.zip }}</p>
       <p class='outside'>Outside?  {{ event.inOut }}</p>
-    </eventInfo>
+      <p class='estWx'>Estimated Weather:  {{ event.estWx }}</p>
+    </div>
   </div>
 </div>
 
 
-Event Owner
-Title
-Date
-Time
-Street address
-City
-State
-Zip code
-Latitude
-Longitude
-Indoor/Outdoor
-Estimated weather 
-Weather status
-Public/Private
+<!-- Event Title
+Event Date
+Event Time
+Event Location
+Indoor/outdoor
+(background) Weather notice or unavailable
+(background) Status change 
+ -->

@@ -1,4 +1,4 @@
-<!doctype <!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="Evently">
   <head>
     <!-- Use Bootstrap and font-awesome for styling -->
@@ -7,15 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <title>Event.ly</title>
     <!-- Load Angular and the Angular-route for the front end -->
-    <script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="../../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../../bower_components/angular/angular.min.js"></script>
+    <script src="../../bower_components/angular-route/angular-route.min.js"></script>
     <!-- Load the main Angular Application file -->
-    <script type="text/javascript" src="../app/app.js"></script>
-    <script type="text/javascript" src='../app/controllers/EntryController.js'></script>
-    <script type="text/javascript" src='../app/controllers/EventListController.js'></script>
-    <script type="text/javascript" src='../app/services/services.js'></script>
+    <script src="../app/app.js"></script>
+    <script src='../app/controllers/EntryController.js'></script>
+    <script src='../app/controllers/EventListController.js'></script>
+    <script src="../app/controllers/DeleteController.js"></script>
+    <script src='../app/services/services.js'></script>
+    <title>Event.ly</title>
   </head>
   <body>
     <header>
@@ -29,6 +30,7 @@
             <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#newEvent"><i class="fa fa-globe"></i> Create New Event</a></li>
             <li><a href="#listEvents"><i class="fa fa-tasks"></i> Find Events</a></li>
+            <li><a href="#deleteEvent"><i class="fa fa-trash"></i> Delete Event</a></li>
           </ul>
         </div>
       </nav>
