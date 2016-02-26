@@ -47,27 +47,27 @@ angular.module('Evently.Services', [])
       });
   };
 
-  // // Weather Info pull
-  // var wx = function(zip){
-  //   var request = '/api/70ba34089d4744a1/conditions/q/' + zip + '.json';
-  //   return $http({
-  //     method: 'GET',
-  //     url: 'http://api.wunderground.com' + request
-  //   })
-  //   .then(function successCallback(res) {
-
-  //     }, function errorCallback(res) {
-  //       // called asynchronously if an error occurs
-  //       console.log('Your weather call had an error', res);
-  //     });
-  // };
+  // Weather Info pull
+  var wx = function(zip, callback){
+    var request = '/api/70ba34089d4744a1/forecast10day/q/' + zip + '.json';
+    return $http({
+      method: 'GET',
+      url: 'http://api.wunderground.com' + request
+    })
+    .then(function successCallback(res) {
+      callback(res.data);
+      }, function errorCallback(res) {
+        // called asynchronously if an error occurs
+        console.log('Your weather call had an error', res);
+      });
+  };
 
   return {
     getAll:getAll,
     getOne:getOne,
-    newEvent:newEvent,
-    deleteEvent:deleteEvent
-    // wx:wx
+    addEntry:addEntry,
+    deleteEvent:deleteEvent,
+    wx:wx
   };
 
 });
