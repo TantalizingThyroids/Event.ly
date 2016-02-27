@@ -25,6 +25,7 @@ build/Release
 
 # Dependency directory
 node_modules
+bower_components
 
 # Optional npm cache directory
 .npm
@@ -32,8 +33,9 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
+# DS_store ignore
+.DS_store
 
 .DS_Store
 
 server/db/*.db
-

@@ -1,0 +1,22 @@
+{
+  "name": "event.ly",
+  "version": "1.0.0",
+  "description": "Smart Scheduling App that checks scheduled events against weather conditions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RossAD/Event.ly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RossAD/Event.ly/issues"
+  },
+  "homepage": "https://github.com/RossAD/Event.ly#readme",
+  "dependencies": {
+    "sqlite3": "^3.1.1"
+  }
+}
