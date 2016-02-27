@@ -8,9 +8,6 @@ var app = angular.module('Evently',[
 
 app.config(function($routeProvider) {
   $routeProvider
-  .when('/',{
-    templateUrl:'../views/index.html'
-  })
   .when('/newEvent',{
     templateUrl:'../views/newEvent.html',
     controller:'EntryController'

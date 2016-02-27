@@ -25,8 +25,8 @@ angular.module('Evently.Add',[])
         streetAddress:$scope.addStreet,
         city:$scope.addCity,
         state:$scope.addState,
-        zip:$scope.addZip,
-        inOut:$scope.outside,
+        zipCode:$scope.addZip,
+        indoorOutdoor:$scope.outside,
         weatherStatus:wxSts
       };
       if(daysOut < 9){
