@@ -1,7 +1,6 @@
 <div id='Events' ng-controller="EventListController">
   <h2>Current Events</h2>
   <div class='events' ng-repeat="event in data.events | orderBy: reverse">
-    <!-- Custom Directive Angular -->
     <div info='event'>
       <h2 class='title'>Title:  {{ event.label }}</h2>
       <p class='eventId'>Event ID:  {{ event.id }}</p>
@@ -13,7 +12,7 @@
       <p class='state'>State: {{ event.state }}</p>
       <p class='zip'>Zip Code:  {{ event.zip }}</p>
       <p class='outside'>Outside?  {{ event.inOut }}</p>
-      <p class='estWx'>Estimated Weather:  {{ event.estWx }}</p>
+      <p class='estWx'>Estimated Weather:  {{ event.estimatedWeather }}</p>
     </div>
   </div>
 </div>

@@ -1,8 +1,9 @@
 angular.module('Evently.Add',[])
-  .controller('EntryController', ['$scope','Events', function($scope, Events){
+  .controller('EntryController', ['$scope','Events','$filter', function($scope, Events, $filter){
     // var wxObj = Events.wx($scope.addZip);
-
+    $scope.showValue = true;
     $scope.addEvent = function () {
+      $scope.showValue = false;
       // Function to get current Day of Year
       // For comparison against Weather API days
       Date.prototype.getDOY = function() {
@@ -15,27 +16,37 @@ angular.module('Evently.Add',[])
       var todayNum = today.getDOY();
       var targetNum = targetDay.getDOY();
       var daysOut = targetNum - todayNum;
-      if(daysOut < 9){
-        Events.wx($scope.addZip, function(res){
-          // console.log('Returned Wx Object 10Day Hourly: ', res);
-          console.log('Returned Wx object: ', res.forecast.simpleforecast.forecastday[daysOut+1]);  
-        });
-      }
-      console.log('Date entry Data format: ', targetDay);
-      console.log('targetDay day of year: ', targetNum);
-      console.log('Day difference: ', daysOut);
+      $scope.data = {};
       var newEvent = {
-        eventOwn:$scope.addOwner,
-        label:$scope.addLabel,
-        time:$scope.addTime,
-        date:$scope.addDate,
-        street:$scope.addStreet,
+        eventOwner:$scope.addOwner,
+        title:$scope.addLabel,
+        time:$filter('date')($scope.addTime, 'shortTime'),
+        date:$filter('date')($scope.addDate, 'shortDate'),
+        streetAddress:$scope.addStreet,
         city:$scope.addCity,
         state:$scope.addState,
         zip:$scope.addZip,
         inOut:$scope.outside,
         weatherStatus:wxSts
       };
-      Events.addEntry(newEvent);
+      if(daysOut < 9){
+        Events.wx($scope.addZip, function(res){
+          // console.log('Returned Wx Object 10Day Hourly: ', res);
+          var wxCond = res.forecast.simpleforecast.forecastday[daysOut+1];
+          // console.log('Returned Wx object: ', wxCond);
+          newEvent.estimatedWeather = wxCond.conditions+' '+'With a High Temperature of '+wxCond.high.fahrenheit+' F';
+          Events.addEntry(newEvent);
+          // $scope.estimatedWeather = newEvent.estimatedWeather;
+          // $scope.eventEntry.$setPristine();
+          $scope.eventEntry.$setUntouched();
+        });
+      } else {
+        newEvent.estimatedWeather = 'Conditions are Unknown at this time, Check back when you are with in 10 days of your event.';
+        Events.addEntry(newEvent);
+        // $scope.estimatedWeather = newEvent.estimatedWeather;
+      }
+      // console.log('Date entry Data format: ', targetDay);
+      // console.log('targetDay day of year: ', targetNum);
+      // console.log('Day difference: ', daysOut);
     };
   }]);
