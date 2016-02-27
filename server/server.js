@@ -61,7 +61,7 @@ app.post('/api/weather',
 	// })
 });
 
-app.delete('/api/event',
+app.delete('/api/event:id',
 function(req, res) {
   console.log("req.body is: ", req.body)
   console.log("req.params.id is: ", req.params.id)
@@ -77,11 +77,10 @@ function(req, res) {
   });
 });
 
-app.get('/api/event',
+app.get('/api/event:id',
 function(req, res) {
   console.log("req.body is: ", req.body)
   console.log("req.params.id is: ", req.params.id)
-  // var deletedItem = req.body;
   var eventId = req.params.id;
   db.getByOwner(eventId, function (err, data) {
     if(err) {
