@@ -52,7 +52,7 @@ angular.module('Evently.Services', [])
     var request = '/api/70ba34089d4744a1/forecast10day/q/' + zip + '.json';
     return $http({
       method: 'GET',
-      url: 'http://api.wunderground.com' + request
+      url: 'https://api.wunderground.com' + request
     })
     .then(function successCallback(res) {
       callback(res.data);
