@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 router(app, express);
 
-app.get('/api/', function(req, res) {
+app.get('/', function(req, res) {
 		// console.log(__dirname)
 		// res.writeHead(200);
 		console.log('Inside Wildcard');
