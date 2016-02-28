@@ -1,0 +1,23 @@
+{
+  "name": "Event.ly",
+  "homepage": "https://github.com/RossAD/Event.ly",
+  "authors": [
+    "Ross Davis <Ross.ad@gmail.com>"
+  ],
+  "description": "Event scheduling App",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "jquery": "^2.2.1"
+  }
+}
