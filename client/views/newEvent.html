@@ -1,0 +1,67 @@
+<div ng-controller="EntryController">
+  <div class='newEvent'>
+    <h1>Enter New Event</h1>
+    <form name="eventEntry">
+      <h2>Event Details</h2>
+      <div class="form-group">
+        <label>Event Owner: </label>
+        <input type='email' ng-model='addOwner' placeholder="User email" required></input>
+      </div>
+      <div class="form-group">
+        <label>Label:</label>
+        <input ng-model='addLabel' placeholder="Enter Label" required></input>
+      </div>
+      <div class="form-group">
+        <label>Time:</label>
+        <input type='time' ng-model='addTime' placeholder="HH:MM"></input>
+      </div>
+      <div class="form-group">
+        <label>Date:</label>
+        <input type='date' ng-model='addDate' placeholder="YYYY-MM-DD" required></input>
+      </div>
+      <div class="form-group">
+        <label>Street Address:</label>
+        <input ng-model='addStreet' placeholder="Street Address"></input>
+      </div>
+      <div class="form-group">
+        <label>City:</label>
+        <input ng-model='addCity' placeholder="City"></input>
+      </div>
+      <div class="form-group">
+        <label>State:</label>
+        <input ng-model='addState' placeholder="State"></input>
+      </div>
+      <div class="form-group">
+        <label>Zip Code:</label>
+        <input ng-model='addZip' placeholder="Event Zip Code" required></input>
+      </div>
+      <div class="checkbox">
+        <label> <input type="checkbox" ng-model='outside' ng-true-value='1' ng-false-value='0'> Outside?</label>
+      </div>
+      <div role="alert">
+        <span class="error" ng-show="eventEntry.input.$error.required">
+          Required!</span>
+        <span class="error" ng-show="eventEntry.input.$error.date">
+          Not a valid date!</span>
+      </div>
+    </form>
+    <button ng-click="addEvent();" class='btn btn-default'>Submit</button>
+  </div>
+  <!-- <div class="pull-right" ng-hide="showValue">
+    <div class='events'>
+    <h1>Event Confirmation</h1>
+      <div info='event'>
+        <p class='title'>Title:  {{ $scope.addLabel }}</p>
+        <p class='eventOwner'>Event Owner: {{ $scope.addOwner }}</p>
+        <p class='time'>Time:  {{ $scope.addTime }}</p>
+        <p class='date'>Date:  {{ $scope.addDate }}</p>
+        <p class='street'>Street Address:  {{ $scope.addStreet }}</p>
+        <p class='city'>City: {{ $scope.addCity }}</p>
+        <p class='state'>State: {{ $scope.addState }}</p>
+        <p class='zip'>Zip Code:  {{ $scope.addZip }}</p>
+        <p class='outside'>Outside?  {{ $scope.outside }}</p>
+        <p class='estWx'>Estimated Weather:  {{ $scope.estimatedWeather }}</p>
+      </div>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="Evently">
+  <head>
+    <!-- Use Bootstrap and font-awesome for styling -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <!-- Load Angular and the Angular-route for the front end -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    <!-- Load the main Angular Application file -->
+    <script src="../app/app.js"></script>
+    <script src='../app/controllers/EntryController.js'></script>
+    <script src='../app/controllers/EventListController.js'></script>
+    <script src="../app/controllers/DeleteController.js"></script>
+    <script src='../app/services/services.js'></script>
+    <title>Event.ly</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Event.ly - Your Smart Event Planner</a>
+          </div>
+          <!-- Navbar Selections -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#newEvent"><i class="fa fa-globe"></i> Create New Event</a></li>
+            <li><a href="#listEvents"><i class="fa fa-tasks"></i> Find Events</a></li>
+            <li><a href="#deleteEvent"><i class="fa fa-trash"></i> Delete Event</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Main Content and views -->
+    <div id='main'>
+      <div ng-view class="container"></div>
+    </div>
+  </body>
+</html>
