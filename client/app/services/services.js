@@ -5,7 +5,7 @@ angular.module('Evently.Services', [])
   var getAll = function(){
     return $http({
       method: 'GET',
-      url: '/event/',
+      url: '/api/event/',
     })
     .then(function(res){
       return res.data;
@@ -15,7 +15,7 @@ angular.module('Evently.Services', [])
   var getOne = function(id){
     return $http({
       method: 'GET',
-      url: '/event/'
+      url: '/api/event/'
     })
     .then(function(res){
       console.log('Get One res:', res);
@@ -27,7 +27,7 @@ angular.module('Evently.Services', [])
     console.log('NewEvent : ', event);
     return $http({
       method: 'POST',
-      url: '/event/',
+      url: '/api/event/',
       data: event
     })
     .then(function(res){
@@ -40,7 +40,7 @@ angular.module('Evently.Services', [])
     console.log('DeleteEvent: ', id);
     return $http({
       method: 'DELETE',
-      url: '/event/'+ id,
+      url: '/api/event/'+ id,
     })
       .then(function(res){
         return res.data;

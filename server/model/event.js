@@ -24,7 +24,7 @@ var createTable = function(callback){
     '`estimatedWeather` TEXT,' +
     '`weatherStatus` INTEGER,' +
     '`publicPrivate` INTEGER)', callback);
-}
+};
 
 /*Exported Functions*/
 module.exports.addOne = function(eventObj, callback){
@@ -48,21 +48,21 @@ module.exports.addOne = function(eventObj, callback){
     eventObj.weatherStatus || 0,
     eventObj.publicPrivate || 1,
     callback);
-}
+};
 module.exports.getAll = function(callback){
   db.all('SELECT * from eventTable', callback);
-}
+};
 
 module.exports.getByOwner = function(eventOwner, callback){
-  var lookUp = db.prepare('SELECT * from eventTable where eventOwner = ?')
+  var lookUp = db.prepare('SELECT * from eventTable where eventOwner = ?');
   lookUp.all(eventOwner, callback);
-}
+};
 
 module.exports.deleteEvent = function(eventID, callback){
   var lookUp = db.prepare('DELETE from eventTable where eventID = ?');
   lookUp.run(eventID, callback);
 
-}
+};
 
 //-------------------------------------------------------------------------------------------//
 

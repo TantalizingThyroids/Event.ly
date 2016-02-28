@@ -8,7 +8,7 @@ var getAllEvents =  function (req,res) {
     }
     res.json(data);
   });
-}
+};
 
 var getEventByOwner =function(req, res){
   var owner = req.query.eventOwner;
@@ -17,9 +17,9 @@ var getEventByOwner =function(req, res){
       return res.status(500).json(err);
     }
     res.status(200).json(data);
-  })
+  });
 
-}
+};
 
 module.exports.addOneEvent =function(req, res){
   var newEvent = req.body;
@@ -29,16 +29,17 @@ module.exports.addOneEvent =function(req, res){
     }
     res.status(201).json(data);
   });
-}
+};
 
 /*Exported Functions*/
 module.exports.getter = function(req, res){
+  console.log('inside getter');
   if (!req.query.eventOwner){
     getAllEvents(req, res);
   } else {
     getEventByOwner(req, res);
   }
-}
+};
 
 module.exports.deleteThisEvent =function(req, res){
   var eventID = req.params.id;
@@ -47,6 +48,6 @@ module.exports.deleteThisEvent =function(req, res){
       return res.status(500).json(err);
     }
     res.json(data);
-  })
+  });
 
-}
+};

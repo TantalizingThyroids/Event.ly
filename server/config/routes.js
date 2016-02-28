@@ -4,6 +4,7 @@ var eventController = require('../controllers/eventController.js');
 
 module.exports = function (app, express) {
   // app.get('/api/'); is this needed?
+  console.log('inside router');
   app.get('/api/event', eventController.getter);
   app.post('/api/event', eventController.addOneEvent);
   app.delete('/api/event/:id', eventController.deleteThisEvent);
