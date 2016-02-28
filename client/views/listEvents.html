@@ -1,0 +1,28 @@
+<div id='Events' ng-controller="EventListController">
+  <h2>Current Events</h2>
+  <div class='events' ng-repeat="event in data.events | orderBy: reverse">
+    <div info='event'>
+      <h2 class='title'>Title:  {{ event.title }}</h2>
+      <p class='eventId'>Event ID:  {{ event.eventID }}</p>
+      <p class='eventOwner'>Event Owner: {{ event.eventOwner }}</p>
+      <p class='time'>Time:  {{ event.time }}</p>
+      <p class='date'>Date:  {{ event.date }}</p>
+      <p class='street'>Street Address:  {{ event.streetAddress }}</p>
+      <p class='city'>City: {{ event.city }}</p>
+      <p class='state'>State: {{ event.state }}</p>
+      <p class='zip'>Zip Code:  {{ event.zipCode }}</p>
+      <p class='outside'>Outside?  {{ event.indoorOutdoor }}</p>
+      <p class='estWx'>Estimated Weather:  {{ event.estimatedWeather }}</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Event Title
+Event Date
+Event Time
+Event Location
+Indoor/outdoor
+(background) Weather notice or unavailable
+(background) Status change 
+ -->
