@@ -7,7 +7,6 @@ var db = new sqlite3.Database(__dirname + '/database.db');
 module.exports.useTestDatabase = function(){
   var path = __dirname + '/testDatabase.db'
   db = new sqlite3.Database(__dirname + '/testDatabase.db');
-  console.log("PATH", path);
 }
 
 /*Test or Live depending on caller*/

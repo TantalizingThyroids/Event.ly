@@ -28,6 +28,7 @@
     "knex": "^0.10.0",
     "nodemon": "^1.8.1",
     "sqlite3": "^3.1.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "jwt-simple": "^0.4.1"
   }
 }
