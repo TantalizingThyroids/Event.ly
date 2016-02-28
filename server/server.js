@@ -38,6 +38,6 @@ app.get('/', function(req, res) {
 
 app.use(express.static(__dirname + '/../client'));
 
-app.listen(8080);
+app.listen(process.env.PORT || 5000);
 console.log("Does this print?");
 
