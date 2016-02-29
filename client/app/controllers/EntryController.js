@@ -10,6 +10,7 @@ angular.module('Evently.Add',[])
         var onejan = new Date(this.getFullYear(),0,1);
         return Math.ceil((this - onejan) / 86400000);
       };
+      console.log($scope.addDate);
       var wxSts = 0;
       var today = new Date();
       var targetDay = $scope.addDate;
@@ -29,6 +30,7 @@ angular.module('Evently.Add',[])
         indoorOutdoor:$scope.outside,
         weatherStatus:wxSts
       };
+      // var addEntryPromise;
       if(daysOut < 9){
         Events.wx($scope.addZip, function(res){
           // console.log('Returned Wx Object 10Day Hourly: ', res);
@@ -45,8 +47,24 @@ angular.module('Evently.Add',[])
         Events.addEntry(newEvent);
         // $scope.estimatedWeather = newEvent.estimatedWeather;
       }
+
+      // addEntryPromise.then(function(data) {
+      //   window.alert('Event successfully created!');
+      // }).catch(function(err){
+      //   window.alert('Unable to create event.')
+      // })
       // console.log('Date entry Data format: ', targetDay);
       // console.log('targetDay day of year: ', targetNum);
       // console.log('Day difference: ', daysOut);
     };
+
+    $scope.testData = function(event) {
+      event.preventDefault();
+      $scope.addOwner = "a@b.com";
+      $scope.addLabel = "label!";
+      $scope.addZip = "39183";
+    }
   }]);
+
+
+// 03:10 PM

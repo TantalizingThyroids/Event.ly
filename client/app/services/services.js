@@ -31,8 +31,8 @@ angular.module('Evently.Services', [])
       data: event
     })
     .then(function(res){
-      console.log('New Event res:', res);
-      
+      window.alert("Event successfully created!");
+      return res.data;
     });
   };
 

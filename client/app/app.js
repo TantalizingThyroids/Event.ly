@@ -30,6 +30,10 @@ app.config(function($routeProvider) {
     templateUrl:'../views/signup.html',
     controller:'AuthController'
   })
+  .when('/login', {
+    templateUrl:'../views/signup.html',
+    controller:'AuthController'
+  })
   .otherwise({
     redirectTo: 'index.html'
   });
