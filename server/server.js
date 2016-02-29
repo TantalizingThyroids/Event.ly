@@ -39,5 +39,5 @@ app.get('/', function(req, res) {
 app.use(express.static(__dirname + '/../client'));
 
 app.listen(process.env.PORT || 5000);
-console.log("Does this print?");
+console.log("Listening on PORT 5000");
 

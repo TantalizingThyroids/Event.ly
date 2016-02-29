@@ -41,7 +41,7 @@ angular.module('Evently.Add',[])
           $scope.eventEntry.$setUntouched();
         });
       } else {
-        newEvent.estimatedWeather = 'Conditions are Unknown at this time, Check back when you are with in 10 days of your event.';
+        newEvent.estimatedWeather = 'Conditions are Unknown at this time. Check back when you are within 10 days of your event.';
         Events.addEntry(newEvent);
         // $scope.estimatedWeather = newEvent.estimatedWeather;
       }
