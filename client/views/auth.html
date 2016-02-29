@@ -1,4 +1,17 @@
 <div ng-controller="AuthController">
+<h2>Login</h2>
+<!--used ng-submit to prevent default button action-->
+<form ng-submit="loginUser()" method="post">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" name="email" ng-model="newSignUp.email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" ng-model="newSignUp.password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
 
 <h2>Sign Up</h2>
 <!--used ng-submit to prevent default button action-->
@@ -16,13 +29,3 @@
 
 </div>
 
-<p>
-  <a href="/login">Login to your account</a>
-<p>
-
-
-
-<!-- <div class="form-group">
-  <label>City:</label>
-  <input ng-model='addCity' placeholder="City"></input>
-</div> -->

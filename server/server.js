@@ -14,7 +14,6 @@ router(app, express);
 app.get('/', function(req, res) {
 		// console.log(__dirname)
 		// res.writeHead(200);
-		console.log('Inside Wildcard');
 		res.sendFile(path.resolve(__dirname + '/../client/views/index.html'));
 });
 
