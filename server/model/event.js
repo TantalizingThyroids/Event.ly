@@ -4,8 +4,8 @@ var db = require('../db/db.js').database();
 var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback){
 
   var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`,`userTableID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback)
-}
+  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback);
+};
 
 var createTable = function(callback){
   db.run('CREATE TABLE IF NOT EXISTS `eventTable`(' +
