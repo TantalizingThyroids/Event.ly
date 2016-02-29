@@ -1,18 +1,10 @@
 var user = require('../model/user.js');
+var helper = require('../config/helpers.js');
 
 /*Helper Functions*/
-var getAllUsers =  function (req,res) {
-  user.getAll(function (err, data) {
-    if(err) {
-      return res.status(500).json(err);
-    }
-    res.json(data);
-  });
-};
-
 module.exports.addOneUser =function(req, res){
   var newUser = req.body;
-  user.addOne(newUser, function (err, data) {
+  user.addUser(newUser, function (err, data) {
     if(err) {
       return res.status(500).json(err);
     }
@@ -21,19 +13,18 @@ module.exports.addOneUser =function(req, res){
 };
 
 /*Exported Functions*/
-module.exports.userGetter = function(req, res){
-  if (!req.query.userName){
-    getAllUsers(req, res);
-  }
+module.exports.loginUser = function(req, res){
+  //checks username & password
+    user.loginUser(req.body.email, req.body.password, function(err, data){
+      if(err){
+        return res.status(500);
+      } else {
+        helper.encode(data);
+      }
+   });
 };
 
-module.exports.deleteThisUser =function(req, res){
-  var userID = req.params.id;
-  user.deleteUser(userID, function(err, data){
-    if(err) {
-      return res.status(500).json(err);
-    }
-    res.json(data);
-  });
 
-};
+// TODO: logout functionality
+// module.exports.logoutUser =function(req, res){
+// };

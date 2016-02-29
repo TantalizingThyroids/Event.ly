@@ -1,4 +1,5 @@
 var jwt = require('jwt-simple');
+var secret = 'unicorn';
 
 module.exports = {
   errorLogger: function (error, req, res, next) {
@@ -11,9 +12,13 @@ module.exports = {
     // message for gracefull error handling on app
     res.send(500, {error: error.message});
   },
+  encode: function (user){
+    var token = jwt.encode({id: user.id}, secret);
+    return token;
+  },
 
   decode: function (req, res, next) {
-    var token = req.headers['x-access-token'];
+    var token = req.headers['Authorization'];
     var user;
 
     if (!token) {
@@ -23,7 +28,7 @@ module.exports = {
     try {
       // decode token and attach user to the request
       // for use inside our controllers
-      user = jwt.decode(token, 'secret');
+      user = jwt.decode(token, secret);
       req.user = user;
       next();
     } catch (error) {
@@ -32,3 +37,5 @@ module.exports = {
 
   }
 };
+
+

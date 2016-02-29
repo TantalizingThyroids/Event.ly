@@ -33,6 +33,8 @@ angular.module('Evently.AuthServices', [])
 
   }
 
+  //TODO: logoutUser function
+
   return {
     addUser: addUser,
     loginUser: loginUser
