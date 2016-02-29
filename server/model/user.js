@@ -28,17 +28,19 @@ var createUserTable = function(callback){
 module.exports.addUser = function(eventObj, callback){
   if(!eventObj.hasOwnProperty('email') || !eventObj.hasOwnProperty('password')) {
     return callback('Must complete required fields.');
-  }
-
+  } else {
+  var hash = bcrypt.hashSync(eventObj.password, salt);
   insertUserValues(
     eventObj.email, // required
-    bcrypt.hashSync(eventObj.password, salt), // required
+    hash, // required
     callback);
+  }
 };
 
-module.exports.loginUser = function(email, password2, callback){
-  db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, bcrypt.hashSync(password2, salt), function(err, data){
+module.exports.loginUser = function(email, password, callback){
+  db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, bcrypt.hashSync(password, salt), function(err, data){
       console.log(bcrypt.hashSync(password, salt))
+      console.log(password)
       if(err){
         callback(err, null);
       } else {
