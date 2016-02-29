@@ -1,5 +1,7 @@
 var db = require('../db/db.js').database();
-//TODO: bcrypt for password
+var bcrypt = require('bcrypt-nodejs');
+var salt = bcrypt.genSaltSync(10);
+
 
 /*Helper Functions*/
 var insertUserValues = function(email, password, callback){
@@ -21,19 +23,24 @@ var createUserTable = function(callback){
 };
 
 /*Exported Functions*/
+
+
 module.exports.addUser = function(eventObj, callback){
   if(!eventObj.hasOwnProperty('email') || !eventObj.hasOwnProperty('password')) {
     return callback('Must complete required fields.');
-  }
-
+  } else {
+  var hash = bcrypt.hashSync(eventObj.password, salt);
   insertUserValues(
     eventObj.email, // required
-    eventObj.password, // required
+    hash, // required
     callback);
+  }
 };
 
 module.exports.loginUser = function(email, password, callback){
-  db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, password, function(err, data){
+  db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, bcrypt.hashSync(password, salt), function(err, data){
+      console.log(bcrypt.hashSync(password, salt))
+      console.log(password)
       if(err){
         callback(err, null);
       } else {
@@ -58,6 +65,9 @@ createUserTable(function (err){
     console.log("ERR!! ", err);
   }
 });
+
+
+//====================bcrypt==========================
 
 /*Test for inserting in userTable*/
 // insertUserValues("Narwhal@ab.com", "groot", function(err, data){
