@@ -63,14 +63,35 @@ module.exports.addOne = function(userID, eventObj, callback){
 
 module.exports.getByOwner = function(userID, callback){
   var lookUp = db.prepare('SELECT * from eventTable where userTableID = ?');
-  lookUp.all(userID, callback);
+  console.log('Getting event: ',lookUp.all(userID, callback));
 };
 
 // TODO: fix bug for appropriate deletion
 module.exports.deleteEvent = function(eventID, callback){
   var lookUp = db.prepare('DELETE from eventTable where eventID = ?');
   lookUp.run(eventID, callback);
+};
 
+// Update records
+module.exports.updateWx = function(data, eventID){
+  console.log('Col, Data, EventID: ', typeof data, typeof eventID);
+  db.run("UPDATE eventTable SET estimatedWeather = ? WHERE eventID = ?", data, eventID, function(err, result){
+    if(err){
+      console.log('You have an Error: ', err);
+    } else {
+      console.log('Data out: ', this);
+    }
+  });
+};
+module.exports.updateStamp = function(data, eventID){
+  console.log('Col, Data, EventID: ', typeof data, typeof eventID);
+  db.run("UPDATE eventTable SET lastUpdate = ? WHERE eventID = ?", data, eventID, function(err, result){
+    if(err){
+      console.log('You have an Error: ', err);
+    } else {
+      console.log('Data out: ', this);
+    }
+  });
 };
 
 

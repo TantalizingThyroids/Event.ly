@@ -2,7 +2,7 @@ var event = require('../model/event.js');
 var eventController = require('../controllers/eventController.js');
 var https = require('https');
 var Promise = require('bluebird');
-var request = Promise.promisify(require('request'));
+var request = Promise.promisifyAll(require('request'));
 
 var wxTerm = {
 'Chance of Flurries':-1,
@@ -37,7 +37,7 @@ var wxTerm = {
 // API request for 10 day forcast
 
 var wx = function(zip, index, callback){
-  var reqPath = '/api/70ba34089d4744a1/forecast10day/q/94118.json';
+  var reqPath = '/api/70ba34089d4744a1/forecast10day/q/'+zip+'.json';
   request('https://api.wunderground.com'+reqPath, function(err, res, body){
     if (!err && res.statusCode == 200) {
       // console.log(body);
@@ -73,7 +73,8 @@ module.exports.wxCheck = function(userID){
       var date = new Date(eventArr[i].date);
       var targetNum = date.getDOY();
       console.log('target date num: ', targetNum);
-      var zip = eventArr[i].zipcode;
+      var zip = eventArr[i].zipCode;
+      console.log('Current Zip: ', zip);
       var daysOut = targetNum - todayNum;
       console.log('Days Out:', daysOut);
       if(daysOut < 9){
@@ -90,10 +91,15 @@ module.exports.wxCheck = function(userID){
           console.log('Current Weather Info: ', currForc);
           var estWx = currForc.conditions+' '+'With a High Temperature of '+currForc.high.fahrenheit+' F';
           console.log('Est weather string:', estWx);
-          event.updateEvent(id, 'estimatedWeather', estWx);
-          event.updateEvent(id, 'lastUpdate', timeStamp);
+
+
+
+          event.updateWx(estWx, id);
+          event.updateStamp(timeStamp, id);
+          
           if(wxTerm[currForc.conditions] !== eventArr[i].weatherStatus){
-            event.updateEvent(id, 'weatherStatus', wxTerm[currForc.conditions]);
+            event.updateWx(wxTerm[currForc.conditions], id);
+            event.updateStamp(timeStamp, id);
             // Email change in weather status to user
           }
         });
