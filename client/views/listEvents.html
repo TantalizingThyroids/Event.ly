@@ -4,7 +4,7 @@
     <div info='event'>
       <h2 class='title'>Title:  {{ event.title }}</h2>
       <p class='eventId'>Event ID:  {{ event.eventID }}</p>
-      <p class='eventOwner'>Event Owner: {{ event.eventOwner }}</p>
+      <p class='eventOwner'>Event Owner Email: {{ event.eventOwner }}</p>
       <p class='time'>Time:  {{ event.time }}</p>
       <p class='date'>Date:  {{ event.date }}</p>
       <p class='street'>Street Address:  {{ event.streetAddress }}</p>
@@ -13,6 +13,8 @@
       <p class='zip'>Zip Code:  {{ event.zipCode }}</p>
       <p class='outside'>Outside?  {{ event.indoorOutdoor }}</p>
       <p class='estWx'>Estimated Weather:  {{ event.estimatedWeather }}</p>
+      <p class='wxSts'>Current Weather Status:  {{ event.weatherStatus }}</p>
+      <p class='lastUpdate'>Last Update:  {{ event.lastUpdate }}</p>
     </div>
   </div>
 </div>
