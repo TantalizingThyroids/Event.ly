@@ -1,0 +1,31 @@
+<div ng-controller="AuthController">
+<h2>Login</h2>
+<!--used ng-submit to prevent default button action-->
+<form ng-submit="loginUser()" method="post">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" name="email" ng-model="login.email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" ng-model="login.password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<h2>Sign Up</h2>
+<!--used ng-submit to prevent default button action-->
+<form ng-submit="addUser()" method="post">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" name="email" ng-model="newSignUp.email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" ng-model="newSignUp.password" required>
+    </div>
+    <button type="submit">Sign Me Up!</button>
+</form>
+
+</div>
+
