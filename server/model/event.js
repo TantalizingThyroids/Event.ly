@@ -1,11 +1,11 @@
 var db = require('../db/db.js').database();
 
 /*Helper Functions*/
-var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback){
+var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, lastUpdate, userTableID, callback){
 
-  var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`,`userTableID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback)
-}
+  var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`,`lastUpdate`,`userTableID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, lastUpdate, userTableID, callback);
+};
 
 var createTable = function(callback){
   db.run('CREATE TABLE IF NOT EXISTS `eventTable`(' +
@@ -24,6 +24,7 @@ var createTable = function(callback){
     '`estimatedWeather` TEXT,' +
     '`weatherStatus` INTEGER,' +
     '`publicPrivate` INTEGER,' +
+    '`lastUpdate` TEXT,'+
     '`userTableID` INTEGER,' +
     'FOREIGN KEY(userTableID) REFERENCES userTable(userID))', callback);
 };
@@ -52,6 +53,7 @@ module.exports.addOne = function(userID, eventObj, callback){
     eventObj.estimatedWeather,
     eventObj.weatherStatus || 0,
     eventObj.publicPrivate || 1,
+    eventObj.lastUpdate,
     userID,
     callback);
 };
