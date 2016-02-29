@@ -15,11 +15,13 @@ module.exports.addOneUser =function(req, res){
 /*Exported Functions*/
 module.exports.loginUser = function(req, res){
   //checks username & password
+  console.log(req.body);
     user.loginUser(req.body.email, req.body.password, function(err, data){
       if(err){
-        return res.status(500);
+        return res.status(500).json(err);
       } else {
-        helper.encode(data);
+        var token = helper.encode(data);
+        res.status(200).json({token: token});
       }
    });
 };

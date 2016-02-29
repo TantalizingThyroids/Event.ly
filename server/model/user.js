@@ -28,7 +28,17 @@ module.exports.addUser = function(eventObj, callback){
 };
 
 module.exports.loginUser = function(email, password, callback){
-  db.run('SELECT * from userTable WHERE email = ? AND password = ?', email, password, callback);
+  db.all('SELECT * from userTable WHERE email = ? AND password = ? LIMIT 1', email, password, function(err, data){
+      if(err){
+        callback(err, null);
+      } else {
+        if(data === undefined){
+          callback("User not found.", null)
+        }else{
+          callback(null, data);
+        }
+      }
+  });
 };
 
 module.exports.deleteUser = function(userID, callback){

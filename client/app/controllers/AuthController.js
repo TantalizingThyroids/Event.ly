@@ -21,7 +21,7 @@ angular.module('Evently.Auth',[])
     }
 
     $scope.loginUser = function(){
-      Auth.loginUser().then(function(data){
+      Auth.loginUser($scope.login.email, $scope.login.password).then(function(data){
         $window.localStorage['token'] = data.token;
         $location.path('/');
       }).catch(function(){

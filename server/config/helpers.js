@@ -18,7 +18,8 @@ module.exports = {
   },
 
   decode: function (req, res, next) {
-    var token = req.headers['Authorization'];
+    console.log(req.headers);
+    var token = req.headers['authorization'];
     var user;
 
     if (!token) {
