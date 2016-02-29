@@ -26,13 +26,13 @@ angular.module('Evently.AuthServices', [])
       return res.data;
     });
 
-  }
+  };
 
   //TODO: logoutUser function
 
   return {
     addUser: addUser,
     loginUser: loginUser
-  }
+  };
 
 });

@@ -48,7 +48,7 @@ var wx = function(zip, index, callback){
 
 // Function that updates each record in table to current weather information
 // Will update event owner of any changes
-module.exports.wxCheck = function(){
+module.exports.wxCheck = function(userID){
   var eventArr;
   Date.prototype.getDOY = function() {
     var onejan = new Date(this.getFullYear(),0,1);
@@ -59,7 +59,9 @@ module.exports.wxCheck = function(){
   // var targetDay = $scope.addDate;
   var todayNum = today.getDOY();
   // var targetNum = targetDay.getDOY();
-  event.getAll(function (err, data) {
+  console.log('Inside WxCheck!');
+  event.getByOwner(userID ,function (err, data) {
+    console.log("Inside get by owner");
     if(err) {
       return res.status(500).json(err);
     }
