@@ -1,7 +1,8 @@
 # Event.ly
 
-> A product designed for people who's scheduled activites may be weather dependent, would like alerts if inclement
-  weather coincides with scheduled activities.
+>
+
+A product designed for people who's scheduled activites may be weather dependent, would like alerts if weather change will affect scheduled activities.
 
 ## Team
 
@@ -11,13 +12,11 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Requirements](#Requirements)
+1. [Development](#Development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+1. [Team](#Team)
+1. [Contributing](#Contributing)
 
 ## Usage
 
@@ -29,8 +28,6 @@
 - Express 4.13.4
 - Angular 2.6.x
 - Sqlite 3.x
-- etc
-- etc
 
 ## Development
 
@@ -39,15 +36,9 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
 bower install
 ```
-
-### Roadmap
-
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
 
 ## Contributing
 
