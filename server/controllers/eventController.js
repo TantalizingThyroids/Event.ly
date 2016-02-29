@@ -1,29 +1,9 @@
 var event = require('../model/event.js');
 
-/*Helper Functions*/
-var getAllEvents =  function (req,res) {
-  event.getAll(function (err, data) {
-    if(err) {
-      return res.status(500).json(err);
-    }
-    res.json(data);
-  });
-};
-
-var getEventByOwner =function(req, res){
-  var owner = req.query.eventOwner;
-  event.getByOwner(owner, function(err, data){
-    if(err) {
-      return res.status(500).json(err);
-    }
-    res.status(200).json(data);
-  });
-
-};
-
+/*Exported Functions*/
 module.exports.addOneEvent =function(req, res){
   var newEvent = req.body;
-  event.addOne(newEvent, function (err, data) {
+  event.addOne(req.user.id, newEvent, function (err, data) {
     if(err) {
       return res.status(500).json(err);
     }
@@ -31,14 +11,13 @@ module.exports.addOneEvent =function(req, res){
   });
 };
 
-/*Exported Functions*/
-module.exports.getter = function(req, res){
-  console.log('inside getter');
-  if (!req.query.eventOwner){
-    getAllEvents(req, res);
-  } else {
-    getEventByOwner(req, res);
-  }
+module.exports.getEventByOwner =function(req, res){
+  event.getByOwner(req.user.id, function(err, data){
+    if(err) {
+      return res.status(500).json(err);
+    }
+    res.status(200).json(data);
+  });
 };
 
 module.exports.deleteThisEvent =function(req, res){
@@ -49,5 +28,4 @@ module.exports.deleteThisEvent =function(req, res){
     }
     res.json(data);
   });
-
 };

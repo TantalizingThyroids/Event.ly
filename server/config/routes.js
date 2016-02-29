@@ -14,7 +14,7 @@ module.exports = function (app, express) {
   /*Event Routes*/
   //decode activated on user login/signup
   app.use(helpers.decode);
-  app.get('/api/event', eventController.getter);
+  app.get('/api/event', eventController.getEventByOwner);
   app.post('/api/event', eventController.addOneEvent);
   app.delete('/api/event/:id', eventController.deleteThisEvent);
 

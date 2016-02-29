@@ -1,10 +1,10 @@
 var db = require('../db/db.js').database();
 
 /*Helper Functions*/
-var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback){
+var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback){
 
-  var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback)
+  var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`,`userTableID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, userTableID, callback)
 }
 
 var createTable = function(callback){
@@ -24,11 +24,12 @@ var createTable = function(callback){
     '`estimatedWeather` TEXT,' +
     '`weatherStatus` INTEGER,' +
     '`publicPrivate` INTEGER,' +
-    '`FOREIGN KEY(userTableID)` REFERENCES UserTable(UserID))', callback);
+    '`userTableID` INTEGER,' +
+    'FOREIGN KEY(userTableID) REFERENCES userTable(userID))', callback);
 };
 
 /*Exported Functions*/
-module.exports.addOne = function(eventObj, callback){
+module.exports.addOne = function(userID, eventObj, callback){
   if(!eventObj.hasOwnProperty('eventOwner') || !eventObj.hasOwnProperty('date') || !eventObj.hasOwnProperty('time') || !eventObj.hasOwnProperty('zipCode') || !eventObj.hasOwnProperty('title')) {
     return callback('Must complete required fields.');
   }
@@ -48,17 +49,19 @@ module.exports.addOne = function(eventObj, callback){
     eventObj.estimatedWeather,
     eventObj.weatherStatus || 0,
     eventObj.publicPrivate || 1,
+    userID,
     callback);
 };
-module.exports.getAll = function(callback){
-  db.all('SELECT * from eventTable', callback);
+// module.exports.getAll = function(callback){
+//   db.all('SELECT * from eventTable', callback);
+// };
+
+module.exports.getByOwner = function(userID, callback){
+  var lookUp = db.prepare('SELECT * from eventTable where userTableID = ?');
+  lookUp.all(userID, callback);
 };
 
-module.exports.getByOwner = function(eventOwner, callback){
-  var lookUp = db.prepare('SELECT * from eventTable where eventOwner = ?');
-  lookUp.all(eventOwner, callback);
-};
-
+// TODO: fix bug for appropriate deletion
 module.exports.deleteEvent = function(eventID, callback){
   var lookUp = db.prepare('DELETE from eventTable where eventID = ?');
   lookUp.run(eventID, callback);

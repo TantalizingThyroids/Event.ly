@@ -60,10 +60,10 @@ createUserTable(function (err){
 });
 
 /*Test for inserting in userTable*/
-insertUserValues("Narwhal@ab.com", "groot", function(err, data){
-  if(err){
-    console.log("ERR", err)
-  } else {
-    console.log("DATA", data);
-  }
-})
+// insertUserValues("Narwhal@ab.com", "groot", function(err, data){
+//   if(err){
+//     console.log("ERR", err)
+//   } else {
+//     console.log("DATA", data);
+//   }
+// })
