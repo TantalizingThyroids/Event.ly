@@ -1,5 +1,6 @@
 angular.module('Evently.Auth',[])
   .controller('AuthController', ['$scope','$location', '$window','Auth', function($scope, $location, $window, Auth){
+
     $scope.newSignUp = {
       email: null,
       password: null
@@ -7,11 +8,17 @@ angular.module('Evently.Auth',[])
 
     $scope.addUser = function () {
       Auth.addUser($scope.newSignUp).then(function(){
+        $window.localStorage['token'] = data.token;
         $location.path('/');
       }).catch(function(err){
         window.alert("Sorry!");
       });
     };
+
+    $scope.login = {
+      email: null,
+      password: null
+    }
 
     $scope.loginUser = function(){
       Auth.loginUser().then(function(data){

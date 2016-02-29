@@ -1,8 +1,6 @@
 angular.module('Evently.AuthServices', [])
 
 .factory('Auth', function($http, $q){
-
-  console.log('Inside Auth heyheyhey!');
   var addUser = function(user){
    //---Test for redirect---//
     return $q(function(resolve, reject) {
