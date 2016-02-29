@@ -2,7 +2,7 @@ var event = require('../model/event.js');
 var eventController = require('../controllers/eventController.js');
 var https = require('https');
 var Promise = require('bluebird');
-var request = require('request');
+var request = Promise.promisify(require('request'));
 
 var wxTerm = {
 'Chance of Flurries':-1,
