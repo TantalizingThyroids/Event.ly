@@ -7,6 +7,12 @@ var insertValues = function(eventOwner, title, date, time, streetAddress, city, 
   statement.run(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, callback)
 }
 
+var insertUserValues = function(userName, callback){
+
+  var statement = db.prepare('INSERT INTO `userTable`(`userName`, `password`) VALUES (?)');
+  statement.run(userName, callback)
+}
+
 var createTable = function(callback){
   db.run('CREATE TABLE IF NOT EXISTS `eventTable`(' +
     '`eventID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,' +
@@ -23,10 +29,43 @@ var createTable = function(callback){
     '`indoorOutdoor` INTEGER,' +
     '`estimatedWeather` TEXT,' +
     '`weatherStatus` INTEGER,' +
-    '`publicPrivate` INTEGER)', callback);
+    '`publicPrivate` INTEGER)'
+    '`FOREIGN KEY(userTableID)` REFERENCES UserTable(UserID)', callback);
+};
+
+var createUserTable = function(callback){
+  db.run('CREATE TABLE IF NOT EXISTS `userTable`(' +
+    '`userID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,' +
+    '`password` TEXT,' +
+    '`userName` TEXT)', callback);
 };
 
 /*Exported Functions*/
+//=================for users=============================
+
+module.exports.addUser = function(eventObj, callback){
+  if(!eventObj.hasOwnProperty('userName') || !eventObj.hasOwnProperty('password')) {
+    return callback('Must complete required fields.');
+  }
+
+  insertValues(
+    eventObj.userName, // required
+    eventObj.password,
+    callback);
+};
+
+module.exports.getAllUsers = function(callback){
+  db.all('SELECT * from userTable', callback);
+};
+
+module.exports.deleteUser = function(userID, callback){
+  var lookUp = db.prepare('DELETE from userTable where userID = ?');
+  lookUp.run(userID, callback);
+
+};
+
+//=================for events=============================
+
 module.exports.addOne = function(eventObj, callback){
   if(!eventObj.hasOwnProperty('eventOwner') || !eventObj.hasOwnProperty('date') || !eventObj.hasOwnProperty('time') || !eventObj.hasOwnProperty('zipCode') || !eventObj.hasOwnProperty('title')) {
     return callback('Must complete required fields.');
