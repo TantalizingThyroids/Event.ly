@@ -1,12 +1,7 @@
 angular.module('Evently.AuthServices', [])
 
-.factory('Auth', function($http, $q){
+.factory('Auth', function($http){
   var addUser = function(user){
-   //---Test for redirect---//
-    return $q(function(resolve, reject) {
-      resolve({awef: "a@b.com"});
-    });
-   //----------------------//
     return $http({
       method: 'POST',
       url: '/api/signup',

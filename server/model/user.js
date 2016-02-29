@@ -5,7 +5,12 @@ var db = require('../db/db.js').database();
 var insertUserValues = function(email, password, callback){
 
   var statement = db.prepare('INSERT INTO `userTable`(`email`, `password`) VALUES (?,?)');
-  statement.run(email, password, callback)
+  statement.run(email, password, function(err) {
+    if(err) {
+      return callback(err);
+    }
+    db.get('SELECT userID, email FROM `userTable` WHERE userID = ?', this.lastID, callback);
+  })
 }
 
 var createUserTable = function(callback){
@@ -23,16 +28,17 @@ module.exports.addUser = function(eventObj, callback){
 
   insertUserValues(
     eventObj.email, // required
-    eventObj.password,
+    eventObj.password, // required
     callback);
 };
 
 module.exports.loginUser = function(email, password, callback){
-  db.all('SELECT * from userTable WHERE email = ? AND password = ? LIMIT 1', email, password, function(err, data){
+  db.all('SELECT * from userTable WHERE email = ? AND password = ?', email, password, function(err, data){
       if(err){
         callback(err, null);
       } else {
-        if(data === undefined){
+        console.log('login data', data);
+        if(data === undefined || data.length === 0){
           callback("User not found.", null)
         }else{
           callback(null, data);
@@ -46,17 +52,18 @@ module.exports.deleteUser = function(userID, callback){
   lookUp.run(userID, callback);
 };
 
-/*Test for inserting in eventTable*/
+/*Test creating userTable*/
 createUserTable(function (err){
   if(err){
     console.log("ERR!! ", err);
-  } else {
-    insertUserValues("Unicorn@ab.com", "groot", function(err, data){
-      if(err){
-        console.log("ERR", err)
-      } else {
-        console.log("DATA", data);
-      }
-    })
   }
 });
+
+/*Test for inserting in userTable*/
+insertUserValues("Narwhal@ab.com", "groot", function(err, data){
+  if(err){
+    console.log("ERR", err)
+  } else {
+    console.log("DATA", data);
+  }
+})

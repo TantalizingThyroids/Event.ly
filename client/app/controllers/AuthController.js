@@ -7,7 +7,7 @@ angular.module('Evently.Auth',[])
     }
 
     $scope.addUser = function () {
-      Auth.addUser($scope.newSignUp).then(function(){
+      Auth.addUser($scope.newSignUp).then(function(data){
         $window.localStorage['token'] = data.token;
         $location.path('/');
       }).catch(function(err){

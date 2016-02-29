@@ -8,14 +8,14 @@ module.exports.addOneUser =function(req, res){
     if(err) {
       return res.status(500).json(err);
     }
-    res.status(201).json(data);
+    var token = helper.encode(data);
+    res.status(201).json({token: token});
   });
 };
 
 /*Exported Functions*/
 module.exports.loginUser = function(req, res){
   //checks username & password
-  console.log(req.body);
     user.loginUser(req.body.email, req.body.password, function(err, data){
       if(err){
         return res.status(500).json(err);

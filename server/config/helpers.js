@@ -13,7 +13,7 @@ module.exports = {
     res.send(500, {error: error.message});
   },
   encode: function (user){
-    var token = jwt.encode({id: user.id}, secret);
+    var token = jwt.encode({id: user.userID}, secret);
     return token;
   },
 
