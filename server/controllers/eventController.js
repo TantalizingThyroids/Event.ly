@@ -1,4 +1,5 @@
 var event = require('../model/event.js');
+var wxUp = require('../wundergroundapi/wundergroundapi.js');
 
 /*Exported Functions*/
 module.exports.addOneEvent =function(req, res){
@@ -13,6 +14,9 @@ module.exports.addOneEvent =function(req, res){
 };
 
 module.exports.getEventByOwner =function(req, res){
+  // Update weather info on Event view
+  // wxUp.wxCheck(req.user.id);
+  console.log('User ID: ', req.user.id);
   event.getByOwner(req.user.id, function(err, data){
     if(err) {
       return res.status(500).json(err);
