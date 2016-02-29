@@ -66,7 +66,10 @@ angular.module('Evently.Add',[])
           // console.log('Returned Wx Object 10Day Hourly: ', res);
           var wxCond = res.forecast.simpleforecast.forecastday[daysOut+1];
           // console.log('Returned Wx object: ', wxCond);
+          var cond = wxCond.conditions;
           newEvent.estimatedWeather = wxCond.conditions+' '+'With a High Temperature of '+wxCond.high.fahrenheit+' F';
+          newEvent.weatherStatus = wxTerm[cond];
+          newEvent.lastUpdate = $filter('date')(today, 'medium');
           Events.addEntry(newEvent);
           // $scope.estimatedWeather = newEvent.estimatedWeather;
           // $scope.eventEntry.$setPristine();
