@@ -3,14 +3,16 @@ var app = angular.module('Evently',[
   'Evently.List',
   'Evently.Add',
   'Evently.Services',
-  'Evently.Delete'
+  'Evently.Delete',
+  'Evently.Auth',
+  'Evently.AuthServices'
   ]);
 
 app.config(function($routeProvider) {
   $routeProvider
   .when('/', {
-    templateUrl:'../views/newEvent.html',
-    controller:'EntryController'
+    templateUrl:'../views/auth.html',
+    controller:'AuthController'
   })
   .when('/newEvent',{
     templateUrl:'../views/newEvent.html',
@@ -24,7 +26,19 @@ app.config(function($routeProvider) {
     templateUrl:'../views/deleteEvent.html',
     controller:'DeleteController'
   })
+  .when('/signup', {
+    templateUrl:'../views/auth.html',
+    controller:'AuthController'
+  })
+  .when('/login', {
+    templateUrl:'../views/auth.html',
+    controller:'AuthController'
+  })
+  .when('/logout', {
+    templateUrl:'../views/auth.html',
+    controller:'AuthController'
+  })
   .otherwise({
-    redirectTo: 'index.html'
+    redirectTo: '/'
   });
 });

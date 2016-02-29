@@ -1,11 +1,16 @@
 angular.module('Evently.Services', [])
-.factory('Events', function($http){
+.factory('Events', function($http, $window){
   // Get all scheduled events
   console.log('Inside Events');
   var getAll = function(){
     return $http({
       method: 'GET',
       url: '/api/event/',
+      headers: {
+        Authorization: function(){
+          return $window.localStorage['token'];
+        }
+      }
     })
     .then(function(res){
       return res.data;
@@ -15,7 +20,12 @@ angular.module('Evently.Services', [])
   var getOne = function(id){
     return $http({
       method: 'GET',
-      url: '/api/event/'
+      url: '/api/event/',
+      headers: {
+        Authorization: function(){
+          return $window.localStorage['token'];
+        }
+      }
     })
     .then(function(res){
       console.log('Get One res:', res);
@@ -28,11 +38,16 @@ angular.module('Evently.Services', [])
     return $http({
       method: 'POST',
       url: '/api/event/',
-      data: event
+      data: event,
+      headers: {
+        Authorization: function(){
+          return $window.localStorage['token'];
+        }
+      }
     })
     .then(function(res){
-      console.log('New Event res:', res);
-      
+      window.alert("Event successfully created!");
+      return res.data;
     });
   };
 
@@ -41,6 +56,11 @@ angular.module('Evently.Services', [])
     return $http({
       method: 'DELETE',
       url: '/api/event/'+ id,
+      headers: {
+        Authorization: function(){
+          return $window.localStorage['token'];
+        }
+      }
     })
       .then(function(res){
         return res.data;
