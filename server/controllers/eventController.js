@@ -2,6 +2,7 @@ var event = require('../model/event.js');
 
 /*Exported Functions*/
 module.exports.addOneEvent =function(req, res){
+  console.log("USER ID", req.user.id);
   var newEvent = req.body;
   event.addOne(req.user.id, newEvent, function (err, data) {
     if(err) {

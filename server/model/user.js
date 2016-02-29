@@ -33,7 +33,7 @@ module.exports.addUser = function(eventObj, callback){
 };
 
 module.exports.loginUser = function(email, password, callback){
-  db.all('SELECT * from userTable WHERE email = ? AND password = ?', email, password, function(err, data){
+  db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, password, function(err, data){
       if(err){
         callback(err, null);
       } else {

@@ -30,6 +30,9 @@ var createTable = function(callback){
 
 /*Exported Functions*/
 module.exports.addOne = function(userID, eventObj, callback){
+  if(userID === undefined) {
+    throw 'userID must be present';
+  }
   if(!eventObj.hasOwnProperty('eventOwner') || !eventObj.hasOwnProperty('date') || !eventObj.hasOwnProperty('time') || !eventObj.hasOwnProperty('zipCode') || !eventObj.hasOwnProperty('title')) {
     return callback('Must complete required fields.');
   }
