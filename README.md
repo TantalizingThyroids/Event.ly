@@ -2,15 +2,6 @@
 
 > Event.ly is a scheduling app that notifies users about the weather condition for their planned activities.
 
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#Requirements)
-1. [Installing Dependencies](#installing-dependencies)
-1. [Team](#Team)
-1. [Contributing](#Contributing)
-
 ## Usage
 
 Simply sign in or create an account to get started!  Create an event and estimated weather conditions will be available if it is within the next 10 days.  This feature is great for aiding with travel arrangements or outdoor activities, etc.
