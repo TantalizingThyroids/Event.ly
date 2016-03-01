@@ -7,7 +7,7 @@ var app = angular.module('Evently',[
   'Evently.Auth',
   'Evently.AuthServices'
   ]);
-
+// Routing views and controlles for client functions
 app.config(function($routeProvider) {
   $routeProvider
   .when('/', {

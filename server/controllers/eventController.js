@@ -14,7 +14,7 @@ module.exports.addOneEvent =function(req, res){
 };
 
 module.exports.getEventByOwner =function(req, res){
-  // Update weather info on Event view
+  // Update weather info on Event view, for each call to view events
   wxUp.wxCheck(req.user.id);
   console.log('User ID: ', req.user.id);
   event.getByOwner(req.user.id, function(err, data){

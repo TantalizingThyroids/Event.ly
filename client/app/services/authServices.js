@@ -1,6 +1,7 @@
 angular.module('Evently.AuthServices', [])
 
 .factory('Auth', function($http){
+  // Make POST request to server to add user
   var addUser = function(user){
     return $http({
       method: 'POST',
@@ -13,6 +14,7 @@ angular.module('Evently.AuthServices', [])
     });
   };
 
+  // Post request to log existing user in
   var loginUser = function(email, password){
     return $http({
       method: 'POST',

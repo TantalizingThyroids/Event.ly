@@ -4,8 +4,8 @@ angular.module('Evently.Auth',[])
     $scope.newSignUp = {
       email: null,
       password: null
-    }
-
+    };
+    // Add user to database
     $scope.addUser = function () {
       Auth.addUser($scope.newSignUp).then(function(data){
         $window.localStorage['token'] = data.token;
@@ -18,7 +18,7 @@ angular.module('Evently.Auth',[])
     $scope.login = {
       email: null,
       password: null
-    }
+    };
 
     //TODO: bug fix for loginUser if email already exists
     $scope.loginUser = function(){
@@ -27,16 +27,16 @@ angular.module('Evently.Auth',[])
         $location.path('/newEvent');
       }).catch(function(){
         window.alert("Unsuccessful login.");
-      })
-    }
-
+      });
+    };
+    // Log user out
     $scope.logOutUser = function(){
       Auth.logOutUser().then(function(){
         $window.localStorage.removeItem('token');
         $location.path('/login');
       }).catch(function(){
         console.log(err);
-      })
-    }
+      });
+    };
 
 }]);

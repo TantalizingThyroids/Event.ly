@@ -16,7 +16,7 @@ angular.module('Evently.Services', [])
       return res.data;
     });
   };
-
+  // Get individual event by event id, NOT IMPLIMENTED YET
   var getOne = function(id){
     return $http({
       method: 'GET',
@@ -32,7 +32,7 @@ angular.module('Evently.Services', [])
       return res.data;
     });
   };
-
+  // POST request to add entry to database
   var addEntry = function(event){
     console.log('NewEvent : ', event);
     return $http({
@@ -50,7 +50,7 @@ angular.module('Evently.Services', [])
       return res.data;
     });
   };
-
+  // remove event from database
   var deleteEvent = function(id){
     console.log('DeleteEvent: ', id);
     return $http({
@@ -67,7 +67,7 @@ angular.module('Evently.Services', [])
       });
   };
 
-  // Weather Info pull
+  // Weather Info pull from Wunderground API
   var wx = function(zip, callback){
     var request = '/api/70ba34089d4744a1/forecast10day/q/' + zip + '.json';
     return $http({
