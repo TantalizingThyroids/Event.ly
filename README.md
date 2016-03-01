@@ -29,8 +29,8 @@
 - Express 4.13.4
 - Angular 2.6.x
 - Sqlite 3.x
-- etc
-- etc
+- MailGun-JS
+- Request
 
 ## Development
 
