@@ -20,7 +20,7 @@ angular.module('Evently.Auth',[])
       password: null
     }
 
-    //TODO: bug fix for loginUser if email already exists
+    //TODO: bug fix for addUser if email already exists
     $scope.loginUser = function(){
       Auth.loginUser($scope.login.email, $scope.login.password).then(function(data){
         $window.localStorage['token'] = data.token;

@@ -57,16 +57,12 @@ module.exports.addOne = function(userID, eventObj, callback){
     userID,
     callback);
 };
-// module.exports.getAll = function(callback){
-//   db.all('SELECT * from eventTable', callback);
-// };
 
 module.exports.getByOwner = function(userID, callback){
   var lookUp = db.prepare('SELECT * from eventTable where userTableID = ?');
   lookUp.all(userID, callback);
 };
 
-// TODO: fix bug for appropriate deletion
 module.exports.deleteEvent = function(eventID, callback){
   var lookUp = db.prepare('DELETE from eventTable where eventID = ?');
   lookUp.run(eventID, callback);

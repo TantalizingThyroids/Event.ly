@@ -15,7 +15,6 @@ module.exports.addOneUser =function(req, res){
 
 /*Exported Functions*/
 module.exports.loginUser = function(req, res){
-  //checks username & password
     user.loginUser(req.body.email, req.body.password, function(err, data){
       if(err){
         return res.status(500).json(err);

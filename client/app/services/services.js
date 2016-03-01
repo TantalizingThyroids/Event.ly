@@ -1,7 +1,5 @@
 angular.module('Evently.Services', [])
 .factory('Events', function($http, $window){
-  // Get all scheduled events
-  console.log('Inside Events');
   var getAll = function(){
     return $http({
       method: 'GET',

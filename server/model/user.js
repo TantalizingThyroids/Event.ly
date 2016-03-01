@@ -1,5 +1,4 @@
 var db = require('../db/db.js').database();
-//TODO: bcrypt for password
 
 /*Helper Functions*/
 var insertUserValues = function(email, password, callback){
@@ -58,12 +57,3 @@ createUserTable(function (err){
     console.log("ERR!! ", err);
   }
 });
-
-/*Test for inserting in userTable*/
-// insertUserValues("Narwhal@ab.com", "groot", function(err, data){
-//   if(err){
-//     console.log("ERR", err)
-//   } else {
-//     console.log("DATA", data);
-//   }
-// })

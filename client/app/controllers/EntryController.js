@@ -30,7 +30,7 @@ angular.module('Evently.Add',[])
     'Overcast':1,
     'Scattered Clouds':1
     };
-    
+
     $scope.showValue = true;
     $scope.addEvent = function () {
       $scope.showValue = false;
@@ -81,23 +81,7 @@ angular.module('Evently.Add',[])
         // $scope.estimatedWeather = newEvent.estimatedWeather;
       }
 
-      // addEntryPromise.then(function(data) {
-      //   window.alert('Event successfully created!');
-      // }).catch(function(err){
-      //   window.alert('Unable to create event.')
-      // })
-      // console.log('Date entry Data format: ', targetDay);
-      // console.log('targetDay day of year: ', targetNum);
-      // console.log('Day difference: ', daysOut);
     };
-
-    $scope.testData = function(event) {
-      event.preventDefault();
-      $scope.addOwner = "a@b.com";
-      $scope.addLabel = "label!";
-      $scope.addZip = "39183";
-    }
   }]);
 
 
-// 03:10 PM

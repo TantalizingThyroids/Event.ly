@@ -4,12 +4,10 @@ var eventController = require('../controllers/eventController.js');
 var userController = require('../controllers/userController.js');
 
 module.exports = function (app, express) {
-  //routes set up in specific order
   /*User Routes*/
   app.post('/api/signup', userController.addOneUser);
   app.post('/api/login', userController.loginUser);
   //TODO: logout functionality
-  // app.post('/api/logout', userController.logoutUser);
 
   /*Event Routes*/
   //decode activated on user login/signup

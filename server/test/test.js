@@ -7,7 +7,6 @@ var fs = require('fs');
 
 describe('event.js', function () {
   beforeEach(function(done){
-    //__dirname so that it is the path regardless of where test is run from
     fs.unlink(__dirname +'/../db/testDatabase.db', function(err){
       if(err){
         console.log (err);
