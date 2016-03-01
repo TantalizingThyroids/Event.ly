@@ -1,6 +1,6 @@
 var db = require('../db/db.js').database();
 
-/*Helper Functions*/
+/*Helper Functions for table creation*/
 var insertValues = function(eventOwner, title, date, time, streetAddress, city, state, zipCode, latitude, longitude, indoorOutdoor, estimatedWeather, weatherStatus, publicPrivate, weatherIcon, lastUpdate, userTableID, callback){
 
   var statement = db.prepare('INSERT INTO `eventTable`(`eventOwner`,`title`,`date`,`time`,`streetAddress`,`city`,`state`,`zipCode`,`latitude`,`longitude`,`indoorOutdoor`,`estimatedWeather`,`weatherStatus`,`publicPrivate`,`weatherIcon`,`lastUpdate`,`userTableID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
@@ -74,7 +74,7 @@ module.exports.deleteEvent = function(eventID, callback){
   lookUp.run(eventID, callback);
 };
 
-// Update records
+// Update records weather info
 module.exports.updateWx = function(data, eventID){
   console.log('Col, Data, EventID: ', typeof data, typeof eventID);
   db.run("UPDATE eventTable SET estimatedWeather = ? WHERE eventID = ?", data, eventID, function(err, result){
@@ -85,6 +85,7 @@ module.exports.updateWx = function(data, eventID){
     }
   });
 };
+// Update record time stamp
 module.exports.updateStamp = function(data, eventID){
   console.log('Col, Data, EventID: ', typeof data, typeof eventID);
   db.run("UPDATE eventTable SET lastUpdate = ? WHERE eventID = ?", data, eventID, function(err, result){
