@@ -12,8 +12,8 @@ var insertUserValues = function(email, password, callback){
       return callback(err);
     }
     db.get('SELECT userID, email FROM `userTable` WHERE userID = ?', this.lastID, callback);
-  })
-}
+  });
+};
 
 var createUserTable = function(callback){
   db.run('CREATE TABLE IF NOT EXISTS `userTable`(' +
@@ -39,14 +39,14 @@ module.exports.addUser = function(eventObj, callback){
 
 module.exports.loginUser = function(email, password, callback){
   db.get('SELECT * from userTable WHERE email = ? AND password = ?', email, bcrypt.hashSync(password, salt), function(err, data){
-      console.log(bcrypt.hashSync(password, salt))
-      console.log(password)
+      console.log(bcrypt.hashSync(password, salt));
+      console.log(password);
       if(err){
         callback(err, null);
       } else {
         console.log('login data', data);
         if(data === undefined || data.length === 0){
-          callback("User not found.", null)
+          callback("User not found.", null);
         }else{
           callback(null, data);
         }

@@ -1,8 +1,8 @@
 var event = require('../model/event.js');
 var eventController = require('../controllers/eventController.js');
 var https = require('https');
-var Promise = require('bluebird');
-var request = Promise.promisifyAll(require('request'));
+// var Promise = require('bluebird');
+var request = require('request');
 
 var wxTerm = {
 'Chance of Flurries':-1,
@@ -36,7 +36,7 @@ var wxTerm = {
 
 // API request for 10 day forcast
 
-var wx = function(zip, index, callback){
+var wx = function(zip, callback){
   var reqPath = '/api/70ba34089d4744a1/forecast10day/q/'+zip+'.json';
   request('https://api.wunderground.com'+reqPath, function(err, res, body){
     if (!err && res.statusCode == 200) {
@@ -49,7 +49,6 @@ var wx = function(zip, index, callback){
 // Function that updates each record in table to current weather information
 // Will update event owner of any changes
 module.exports.wxCheck = function(userID){
-  var eventArr;
   Date.prototype.getDOY = function() {
     var onejan = new Date(this.getFullYear(),0,1);
     return Math.ceil((this - onejan) / 86400000);
@@ -61,50 +60,51 @@ module.exports.wxCheck = function(userID){
   // var targetNum = targetDay.getDOY();
   console.log('Inside WxCheck!');
   event.getByOwner(userID ,function (err, data) {
+    var eventArr;
     console.log("Inside get by owner");
     if(err) {
       return res.status(500).json(err);
     }
     console.log('getAll response: ', data);
     eventArr = data;
-    for(var i = 0; i < eventArr.length; i++){
-      var id = eventArr[i].eventID;
-      console.log('event Obj: ', eventArr[i]);
-      var date = new Date(eventArr[i].date);
+  
+    // for(var i = 0; i < eventArr.length; i++){
+    eventArr.forEach(function(item, i){ 
+      var id = item.eventID;
+      console.log('event Obj: ', item);
+      var date = new Date(item.date);
       var targetNum = date.getDOY();
       console.log('target date num: ', targetNum);
-      var zip = eventArr[i].zipCode;
+      var zip = item.zipCode;
       console.log('Current Zip: ', zip);
       var daysOut = targetNum - todayNum;
       console.log('Days Out:', daysOut);
+
+      // Check if Event date is within 10 days of today
       if(daysOut < 9){
-        console.log('Current Event 1!!!: ', eventArr[i]);
-        console.log('Current Index: ', i);
-        wx(zip, i, function(data){
+        wx(zip, function(data){
           // grab current forcasted weather for target day
-          console.log('Index passed:' ,i);
-          var currEvent = eventArr[i];
+          console.log('Index passed:' , i);
+          var currEvent = item;
           console.log('Current Event Inside Wx Method: ', eventArr);
           var timeStamp = today.toString();
-          // $filter('date')(today, 'medium');
           var currForc = data.forecast.simpleforecast.forecastday[daysOut+1];
-          console.log('Current Weather Info: ', currForc);
+          // console.log('Current Weather Info: ', currForc);
           var estWx = currForc.conditions+' '+'With a High Temperature of '+currForc.high.fahrenheit+' F';
           console.log('Est weather string:', estWx);
-
-
 
           event.updateWx(estWx, id);
           event.updateStamp(timeStamp, id);
           
-          if(wxTerm[currForc.conditions] !== eventArr[i].weatherStatus){
+          if(wxTerm[currForc.conditions] !== item.weatherStatus){
             event.updateWx(wxTerm[currForc.conditions], id);
             event.updateStamp(timeStamp, id);
             // Email change in weather status to user
           }
         });
       }
-    }
+    });
   });
 };
+
 
