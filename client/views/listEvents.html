@@ -12,19 +12,9 @@
       <p class='state'>State: {{ event.state }}</p>
       <p class='zip'>Zip Code:  {{ event.zipCode }}</p>
       <p class='outside'>Outside?  {{ event.indoorOutdoor }}</p>
-      <p class='estWx'>Estimated Weather:  {{ event.estimatedWeather }}</p>
+      <p class='estWx'>Estimated Weather:  {{ event.estimatedWeather }}  <img src="{{ event.weatherIcon }}"></p>
       <p class='wxSts'>Current Weather Status:  {{ event.weatherStatus }}</p>
       <p class='lastUpdate'>Last Update:  {{ event.lastUpdate }}</p>
     </div>
   </div>
 </div>
-
-
-<!-- Event Title
-Event Date
-Event Time
-Event Location
-Indoor/outdoor
-(background) Weather notice or unavailable
-(background) Status change 
- -->

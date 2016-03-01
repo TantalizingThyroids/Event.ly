@@ -68,35 +68,17 @@ angular.module('Evently.Add',[])
           // console.log('Returned Wx object: ', wxCond);
           var cond = wxCond.conditions;
           newEvent.estimatedWeather = wxCond.conditions+' '+'With a High Temperature of '+wxCond.high.fahrenheit+' F';
+          newEvent.weatherIcon = wxCond.icon_url;
           newEvent.weatherStatus = wxTerm[cond];
           newEvent.lastUpdate = $filter('date')(today, 'medium');
           Events.addEntry(newEvent);
-          // $scope.estimatedWeather = newEvent.estimatedWeather;
-          // $scope.eventEntry.$setPristine();
           $scope.eventEntry.$setUntouched();
         });
       } else {
         newEvent.estimatedWeather = 'Conditions are Unknown at this time. Check back when you are within 10 days of your event.';
         Events.addEntry(newEvent);
-        // $scope.estimatedWeather = newEvent.estimatedWeather;
       }
-
-      // addEntryPromise.then(function(data) {
-      //   window.alert('Event successfully created!');
-      // }).catch(function(err){
-      //   window.alert('Unable to create event.')
-      // })
-      // console.log('Date entry Data format: ', targetDay);
-      // console.log('targetDay day of year: ', targetNum);
-      // console.log('Day difference: ', daysOut);
     };
-
-    $scope.testData = function(event) {
-      event.preventDefault();
-      $scope.addOwner = "a@b.com";
-      $scope.addLabel = "label!";
-      $scope.addZip = "39183";
-    }
   }]);
 
 

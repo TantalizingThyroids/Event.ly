@@ -109,6 +109,8 @@ module.exports.wxCheck = function(userID){
           if(wxTerm[currForc.conditions] !== item.weatherStatus){
             event.updateWx(wxTerm[currForc.conditions], id);
             event.updateStamp(timeStamp, id);
+            
+            // Email User of any Weather Changes
             var mailgun = new Mailgun({apiKey: api_key, domain: domain});
             var mailData = {
                 //Specify email data
@@ -132,7 +134,6 @@ module.exports.wxCheck = function(userID){
                         console.log(body);
                     }
                 });
-            // Email change in weather status to user
           }
         });
       }
